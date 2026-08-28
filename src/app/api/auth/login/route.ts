@@ -58,8 +58,14 @@ export async function POST(req: NextRequest) {
     });
 
     return response;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    
+    // Check if it's a Prisma connection error
+    if (error.message?.includes('Authentication failed') || error.message?.includes('Can\'t reach database') || error.message?.includes('DATABASE_URL')) {
+      return NextResponse.json({ error: 'Database connection failed. Ensure DATABASE_URL is set in Vercel Environment Variables.' }, { status: 500 });
+    }
+
+    return NextResponse.json({ error: 'Internal server error: ' + (error.message || 'Unknown error') }, { status: 500 });
   }
 }

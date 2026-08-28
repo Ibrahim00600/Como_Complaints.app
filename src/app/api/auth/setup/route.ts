@@ -12,6 +12,14 @@ async function hashPassword(password: string): Promise<string> {
 }
 
 export async function POST() {
+  return handleSetup();
+}
+
+export async function GET() {
+  return handleSetup();
+}
+
+async function handleSetup() {
   try {
     const userCount = await prisma.user.count();
 
