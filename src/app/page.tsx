@@ -3,49 +3,68 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-[calc(100vh-64px)] bg-zinc-50">
-      <main className="flex-1 w-full max-w-5xl mx-auto px-6 py-12 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12">
+    <div className="flex flex-col min-h-[calc(100vh-64px)]">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-6 py-12 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
         <div className="flex-1 space-y-8 text-center md:text-left">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-brand">
-            Welcome to CUCS
+          <div className="inline-block relative h-20 w-20 md:hidden mb-4 rounded-full overflow-hidden border-2 border-gold shadow-lg bg-white">
+             <Image 
+                src="/logo.jpg" 
+                alt="CUCS Logo" 
+                fill
+                className="object-cover"
+              />
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-sm">
+            Welcome to <span className="text-gold">CUCS</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-xl mx-auto md:mx-0">
+          <p className="text-xl text-gray-200 max-w-xl mx-auto md:mx-0">
             The Comopolitan University Complaints System provides a seamless way to report and track issues across campus facilities.
           </p>
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 inline-block text-left">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">How it works</h2>
-            <ul className="space-y-4">
+          <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20 inline-block text-left w-full max-w-md">
+            <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+               <svg className="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+               </svg>
+               How it works
+            </h2>
+            <ul className="space-y-6">
               <li className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-bold text-sm mt-0.5">1</div>
-                <p className="ml-3 text-gray-600">Scan a CUCS QR code located at the facility.</p>
+                <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gold/20 border border-gold/50 text-gold flex items-center justify-center font-bold text-sm shadow-inner">1</div>
+                <p className="ml-4 text-gray-200 mt-1">Scan a CUCS QR code located at the facility.</p>
               </li>
               <li className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-bold text-sm mt-0.5">2</div>
-                <p className="ml-3 text-gray-600">Fill out the quick issue report form.</p>
+                <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gold/20 border border-gold/50 text-gold flex items-center justify-center font-bold text-sm shadow-inner">2</div>
+                <p className="ml-4 text-gray-200 mt-1">Fill out the quick issue report form.</p>
               </li>
               <li className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-bold text-sm mt-0.5">3</div>
-                <p className="ml-3 text-gray-600">Our facilities team handles the rest.</p>
+                <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gold/20 border border-gold/50 text-gold flex items-center justify-center font-bold text-sm shadow-inner">3</div>
+                <p className="ml-4 text-gray-200 mt-1">Our facilities team handles the rest.</p>
               </li>
             </ul>
           </div>
-          <div className="pt-4">
-             <Link 
-              href="/login" 
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand hover:bg-brand/90 transition-colors shadow-sm"
-            >
-              Admin Portal Login
-            </Link>
-          </div>
         </div>
-        <div className="flex-1 hidden md:flex justify-center">
-          <div className="relative w-full max-w-sm aspect-square bg-gradient-to-tr from-brand/20 to-brand/5 rounded-3xl overflow-hidden shadow-inner flex items-center justify-center border border-white">
-            <div className="text-center p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-white/50">
-              <div className="w-32 h-32 mx-auto bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center mb-4">
-                <span className="text-gray-400 text-sm font-medium">QR Code</span>
+        
+        <div className="flex-1 hidden md:flex justify-center relative">
+           {/* Decorative background glow */}
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+           
+          <div className="relative w-full max-w-md aspect-square bg-gradient-to-tr from-white/5 to-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col items-center justify-center border border-white/20 backdrop-blur-sm">
+            <div className="absolute inset-0 bg-[url('/logo.jpg')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
+            
+            <div className="text-center p-8 bg-brand/40 backdrop-blur-md rounded-2xl shadow-xl border border-white/10 z-10 w-3/4 transform transition-transform hover:scale-105 duration-300">
+              <div className="w-32 h-32 mx-auto bg-white rounded-xl shadow-inner p-2 flex items-center justify-center mb-6 relative group">
+                 {/* Simulated QR Code styling */}
+                 <div className="w-full h-full border-4 border-brand rounded-lg flex flex-wrap p-1 relative">
+                    <div className="w-6 h-6 border-4 border-brand absolute top-1 left-1"></div>
+                    <div className="w-6 h-6 border-4 border-brand absolute top-1 right-1"></div>
+                    <div className="w-6 h-6 border-4 border-brand absolute bottom-1 left-1"></div>
+                    <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand to-transparent opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                 </div>
               </div>
-              <p className="font-semibold text-brand">Scan to Report</p>
-              <p className="text-xs text-gray-500 mt-1">Example Location Label</p>
+              <p className="text-lg font-bold text-white mb-1">Scan to Report</p>
+              <div className="inline-block px-3 py-1 bg-white/10 rounded-full border border-white/20">
+                <p className="text-xs text-gold">Facility Management</p>
+              </div>
             </div>
           </div>
         </div>

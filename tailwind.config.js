@@ -9,7 +9,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: '#002B49', // university primary color
+        brand: {
+          DEFAULT: '#002B49', // university primary color
+          dark: '#001A2C',
+          light: '#004A7C',
+        },
+        gold: {
+          DEFAULT: '#C8A362', // logo accent color
+          dark: '#9A7B44',
+          light: '#E6C68A',
+        }
       },
     },
   },
