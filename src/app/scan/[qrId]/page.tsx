@@ -2,6 +2,8 @@ import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import ComplaintForm from './ComplaintForm';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ScanPage({ params }: { params: Promise<{ qrId: string }> }) {
   const { qrId } = await params;
   
