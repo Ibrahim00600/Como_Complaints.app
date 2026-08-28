@@ -10,10 +10,10 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-gold/50 group-hover:border-gold transition-colors duration-300 shadow-sm">
                 <Image 
-                  src="/logo.jpg" 
+                  src="/logo.png" 
                   alt="CUCS Logo" 
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
               <span className="font-bold text-xl tracking-tight text-white group-hover:text-gold-light transition-colors">

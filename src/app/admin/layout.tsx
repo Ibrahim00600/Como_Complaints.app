@@ -51,9 +51,23 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           })}
         </nav>
 
-        <div className="p-4 border-t border-white/10">
-          <p className="text-xs text-white/30 text-center">Cosmopolitan University</p>
-          <p className="text-xs text-white/20 text-center">Complaints System v1.0</p>
+        <div className="p-4 border-t border-white/10 space-y-4">
+          <button
+            onClick={async () => {
+              await fetch('/api/auth/logout', { method: 'POST' });
+              window.location.href = '/login';
+            }}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white rounded-lg transition-colors text-sm"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Sign Out
+          </button>
+          <div>
+            <p className="text-xs text-white/30 text-center">Cosmopolitan University</p>
+            <p className="text-xs text-white/20 text-center">Complaints System v1.0</p>
+          </div>
         </div>
       </aside>
 
