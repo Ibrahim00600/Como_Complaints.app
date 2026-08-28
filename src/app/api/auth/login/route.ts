@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
+import { scrypt, timingSafeEqual } from 'crypto';
+import { promisify } from 'util';
+
+const scryptAsync = promisify(scrypt);
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,17 +22,27 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.passwordHash);
+    const passwordMatch = await (async () => {
+      try {
+        const [salt, storedHash] = user.passwordHash.split(':');
+        const hashBuffer = (await scryptAsync(password, salt, 64)) as Buffer;
+        const storedHashBuffer = Buffer.from(storedHash, 'hex');
+        if (hashBuffer.length !== storedHashBuffer.length) return false;
+        return timingSafeEqual(hashBuffer, storedHashBuffer);
+      } catch {
+        return false;
+      }
+    })();
 
     if (!passwordMatch) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
-    const token = jwt.sign(
-      { userId: user.id, role: user.role, email: user.email },
-      process.env.JWT_SECRET || 'fallback_secret',
-      { expiresIn: '7d' }
-    );
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback_secret_minimum_32_chars_long');
+    const token = await new SignJWT({ userId: user.id, role: user.role, email: user.email })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setExpirationTime('7d')
+      .sign(secret);
 
     const response = NextResponse.json({ success: true }, { status: 200 });
     
