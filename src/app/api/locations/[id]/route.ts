@@ -3,9 +3,10 @@ import prisma from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    await prisma.location.delete({ where: { id: params.id } });
+    const { id } = await params;
+    await prisma.location.delete({ where: { id } });
     return NextResponse.json({ success: true });
   } catch (e) {
     console.error(e);

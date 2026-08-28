@@ -4,12 +4,13 @@ import { verifyAuth } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const auth = await verifyAuth(req);
   if (!auth) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   try {
-    await prisma.user.delete({ where: { id: params.id } });
+    const { id } = await params;
+    await prisma.user.delete({ where: { id } });
     return NextResponse.json({ success: true });
   } catch (e) {
     console.error(e);
