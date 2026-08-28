@@ -1,7 +1,2 @@
-import { definePrismaConfig } from "prisma/config";
-
-export default definePrismaConfig({
-  skills: {
-    agents: ["claude", "cursor", "agents", "devin"],
-  },
-});
+// Prisma configuration - simplified to avoid 'prisma/config' module resolution error
+export default {};

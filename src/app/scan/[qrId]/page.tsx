@@ -2,7 +2,7 @@ import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import ComplaintForm from './ComplaintForm';
 
-export default async function ScanPage({ params }: { params: { qrId: string } }) {
+export default async function ScanPage({ params }: { params: Promise<{ qrId: string }> }) {
   const { qrId } = await params;
   
   const location = await prisma.location.findUnique({
