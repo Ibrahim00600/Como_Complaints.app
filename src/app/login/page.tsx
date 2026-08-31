@@ -42,12 +42,12 @@ export default function LoginPage() {
     <div className="flex flex-col flex-1 items-center justify-center p-4 min-h-[calc(100vh-64px)] relative z-10">
       <div className="w-full max-w-md p-8 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
         <div className="flex flex-col items-center mb-8">
-          <div className="relative h-24 w-24 mb-4 rounded-full overflow-hidden border-4 border-gold shadow-lg bg-white">
+          <div className="relative h-16 w-64 mb-6 flex items-center justify-center">
             <Image 
-              src="/logo.jpg" 
+              src="/logo.png" 
               alt="Cosmopolitan University Logo" 
               fill
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <h1 className="text-3xl font-bold text-white text-center">Admin Portal</h1>
