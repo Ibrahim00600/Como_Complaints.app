@@ -52,15 +52,15 @@ export default async function ComplaintsAdminPage({
             <tbody className="divide-y divide-gray-100">
               {complaints.map(complaint => (
                 <tr key={complaint.id} className="hover:bg-gray-50">
-                  <td className="p-4 text-sm text-gray-500 font-mono">
+                  <td className="p-4 text-sm text-gray-700 font-mono">
                     {complaint.id.substring(0, 8)}
                   </td>
-                  <td className="p-4 text-sm font-medium">
+                  <td className="p-4 text-sm font-semibold text-gray-900">
                     {complaint.location?.name || 'Unknown'}
                   </td>
                   <td className="p-4">
-                    <span className="font-semibold text-sm block">{complaint.type}</span>
-                    <span className="text-sm text-gray-600 line-clamp-2">{complaint.description}</span>
+                    <span className="font-semibold text-sm block text-gray-800">{complaint.type}</span>
+                    <span className="text-sm text-gray-700 line-clamp-2">{complaint.description}</span>
                   </td>
                   <td className="p-4 text-sm">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
