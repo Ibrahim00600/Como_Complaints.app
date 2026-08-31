@@ -6,7 +6,7 @@ export default function Home() {
     <div className="flex flex-col min-h-[calc(100vh-64px)]">
       <main className="flex-1 w-full max-w-6xl mx-auto px-6 py-12 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
         <div className="flex-1 space-y-8 text-center md:text-left">
-          <div className="inline-block relative h-20 w-20 md:hidden mb-4 rounded-full overflow-hidden border-2 border-gold shadow-lg bg-white">
+          <div className="relative h-12 w-48 md:hidden mb-6 flex items-center mx-auto">
              <Image 
                 src="/logo.png" 
                 alt="CUCS Logo" 
