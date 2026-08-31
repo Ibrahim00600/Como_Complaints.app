@@ -15,9 +15,11 @@ export async function POST(req: NextRequest) {
     const locationId = formData.get('locationId') as string;
     const type = formData.get('type') as any;
     const description = formData.get('description') as string;
+    const reporterName = formData.get('reporterName') as string;
+    const reporterEmail = formData.get('reporterEmail') as string;
     const image = formData.get('image') as File | null;
 
-    if (!locationId || !type || !description) {
+    if (!locationId || !type || !description || !reporterName || !reporterEmail) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -43,6 +45,8 @@ export async function POST(req: NextRequest) {
         locationId,
         type,
         description,
+        reporterName,
+        reporterEmail,
         imageUrl,
         priority: 'MEDIUM', // Default
         status: 'PENDING',

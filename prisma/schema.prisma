@@ -75,6 +75,8 @@ model Complaint {
   location     Location @relation(fields: [locationId], references: [id])
   reporterId   String?
   reporter     User? @relation("SubmittedBy", fields: [reporterId], references: [id])
+  reporterName String?
+  reporterEmail String?
   assigneeId   String?
   assignee     User? @relation("AssignedTo", fields: [assigneeId], references: [id])
 }
