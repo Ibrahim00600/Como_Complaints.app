@@ -18,31 +18,29 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="flex min-h-screen bg-transparent relative z-10">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white/5 backdrop-blur-xl border-r border-white/10 text-white flex flex-col shadow-[4px_0_24px_0_rgba(0,0,0,0.2)] shrink-0">
-        <div className="p-6 border-b border-white/10 flex items-center justify-center">
-          <div className="relative h-12 w-48 flex items-center">
-            <Image 
-              src="/logo.png" 
-              alt="CUCS Logo" 
-              fill
-              className="object-contain"
-            />
+      {/* ── Sidebar ── */}
+      <aside className="w-64 flex flex-col shrink-0" style={{ background: 'rgba(0,20,40,0.72)', backdropFilter: 'blur(20px)', borderRight: '1px solid rgba(255,255,255,0.12)' }}>
+        {/* Logo */}
+        <div className="p-6 flex items-center justify-center" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)' }}>
+          <div className="relative h-12 w-48">
+            <Image src="/logo.png" alt="CUCS Logo" fill className="object-contain" />
           </div>
         </div>
 
+        {/* Nav */}
         <nav className="flex-1 p-4 space-y-1 mt-2">
           {navLinks.map(({ href, label, icon }) => {
-            const isActive = pathname === href;
+            const isActive = pathname === href || (href !== '/admin' && pathname.startsWith(href));
             return (
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-200 ${
                   isActive
-                    ? 'bg-gold/20 text-gold border border-gold/30'
-                    : 'text-white/70 hover:bg-white/10 hover:text-white'
+                    ? 'text-white shadow-lg'
+                    : 'text-white/75 hover:text-white hover:bg-white/10'
                 }`}
+                style={isActive ? { background: 'rgba(196,160,50,0.25)', border: '1px solid rgba(196,160,50,0.45)', color: '#f5d97a' } : {}}
               >
                 <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   {icon.split(' M').map((d, i) => (
@@ -55,32 +53,36 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           })}
         </nav>
 
-        <div className="p-4 border-t border-white/10 space-y-4">
+        {/* Footer / Logout */}
+        <div className="p-4 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.10)' }}>
           <button
             onClick={async () => {
               await fetch('/api/auth/logout', { method: 'POST' });
               window.location.href = '/login';
             }}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white rounded-lg transition-colors text-sm"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all"
+            style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.35)', color: '#fca5a5' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(239,68,68,0.28)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(239,68,68,0.15)'; }}
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>
             Sign Out
           </button>
-          <div>
-            <p className="text-xs text-white/30 text-center">Cosmopolitan University</p>
-            <p className="text-xs text-white/20 text-center">Complaints System v1.0</p>
-          </div>
+          <p className="text-xs text-white/40 text-center leading-relaxed">
+            Cosmopolitan University<br />
+            <span className="text-white/25">Complaints System v1.0</span>
+          </p>
         </div>
       </aside>
 
-      {/* Main content */}
+      {/* ── Main content ── */}
       <div className="flex-1 flex flex-col min-h-screen">
         <main className="flex-1 overflow-y-auto p-8">
           {children}
         </main>
-        <footer className="bg-white/5 backdrop-blur-xl border-t border-white/10 text-white/40 text-center text-xs py-3">
+        <footer className="text-center text-xs py-3" style={{ background: 'rgba(0,0,0,0.2)', color: 'rgba(255,255,255,0.35)', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           © {new Date().getFullYear()} Cosmopolitan University Complaints System · All rights reserved
         </footer>
       </div>

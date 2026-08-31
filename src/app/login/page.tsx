@@ -51,7 +51,7 @@ export default function LoginPage() {
             />
           </div>
           <h1 className="text-3xl font-bold text-white text-center">Admin Portal</h1>
-          <p className="text-gray-300 text-sm mt-2 text-center">Comopolitan University Complaints System</p>
+          <p className="text-sm mt-2 text-center" style={{ color: 'rgba(255,255,255,0.70)' }}>Cosmopolitan University Complaints System</p>
         </div>
 
         {error && (
@@ -62,7 +62,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-1" htmlFor="email">
+            <label className="block text-sm font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.85)' }} htmlFor="email">
               Email Address
             </label>
             <input
@@ -70,13 +70,14 @@ export default function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
+              style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.25)', color: '#ffffff' }}
               placeholder="admin@cosmopolitan.edu"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-1" htmlFor="password">
+            <label className="block text-sm font-semibold mb-1" style={{ color: 'rgba(255,255,255,0.85)' }} htmlFor="password">
               Password
             </label>
             <input
@@ -84,7 +85,8 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
+              style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.25)', color: '#ffffff' }}
               placeholder="••••••••"
               required
             />
