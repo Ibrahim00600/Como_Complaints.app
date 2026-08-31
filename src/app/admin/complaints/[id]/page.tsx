@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import StatusSelect from './StatusSelect';
+import StatusSelect from '../StatusSelect';
 import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
