@@ -92,8 +92,9 @@ export default function ComplaintForm({ locationId, locationName }: { locationId
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all"
+            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all text-gray-900 bg-white"
             placeholder="John Doe"
+            style={{ color: '#111827', backgroundColor: '#ffffff' }}
           />
         </div>
         <div>
@@ -103,8 +104,9 @@ export default function ComplaintForm({ locationId, locationName }: { locationId
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all"
+            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all text-gray-900 bg-white"
             placeholder="john@example.com"
+            style={{ color: '#111827', backgroundColor: '#ffffff' }}
           />
         </div>
       </div>
@@ -114,7 +116,8 @@ export default function ComplaintForm({ locationId, locationName }: { locationId
         <select 
           value={type} 
           onChange={(e) => setType(e.target.value)}
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all bg-white"
+          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all text-gray-900 bg-white"
+          style={{ color: '#111827', backgroundColor: '#ffffff' }}
         >
           <option value="CLEANING">Cleaning & Janitorial</option>
           <option value="PLUMBING">Plumbing Issue</option>
@@ -130,8 +133,9 @@ export default function ComplaintForm({ locationId, locationName }: { locationId
           rows={4}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all resize-none"
+          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all resize-none text-gray-900 bg-white"
           placeholder="Please describe the issue in detail..."
+          style={{ color: '#111827', backgroundColor: '#ffffff' }}
         />
       </div>
 
@@ -176,7 +180,8 @@ export default function ComplaintForm({ locationId, locationName }: { locationId
       <button 
         type="submit" 
         disabled={isSubmitting}
-        className="w-full py-3 px-4 bg-brand text-white font-bold text-lg rounded-xl shadow-md hover:bg-brand-dark hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed transition-all flex justify-center items-center gap-2 mt-4"
+        className="w-full py-3 px-4 rounded-xl shadow-md disabled:opacity-70 disabled:cursor-not-allowed transition-all flex justify-center items-center gap-2 mt-4"
+        style={{ backgroundColor: '#002B49', color: '#ffffff', fontWeight: 'bold', fontSize: '1.125rem' }}
       >
         {isSubmitting ? (
           <>
